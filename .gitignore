@@ -1,3 +1,6 @@
 .idea
-
+.vscode
 **/.ipynb_checkpoints
+myProjects/**/bin
+myProjects/**/include
+myProjects/**/lib
