@@ -7,9 +7,8 @@ def printLog(msg):
 
 def main():
     projectName = sys.argv[1]
-    projectVenvName = projectName + "Venv"
     myProjectsDirectoryName = "myProjects"
-    printLog("python project: {} will be created with virtual env: {}".format(projectName, projectVenvName))
+    printLog("python project: {} will be created".format(projectName))
     
     if not os.path.isdir(myProjectsDirectoryName):
         printLog("creating directory {}".format(myProjectsDirectoryName))
@@ -24,19 +23,16 @@ def main():
     os.mkdir(projectName)
     os.chdir(projectName)
     
-    os.system("virtualenv {}".format(projectVenvName))
-    os.chdir(projectVenvName)
     os.mkdir("src")
     os.mkdir("test")
     os.chdir("../")
     os.chdir("../")
-    os.chdir("../")
     
     os.system("cp Untitled.ipynb {}.ipynb".format(projectName))
-    os.system("mv {}.ipynb {}/{}/{}/src/".format(projectName, myProjectsDirectoryName, projectName, projectVenvName))
+    os.system("mv {}.ipynb {}/{}/src/".format(projectName, myProjectsDirectoryName, projectName))
 
     printLog("CWD {}".format(os.getcwd()))
-    os.chdir("{}/{}/{}/src/".format(myProjectsDirectoryName, projectName, projectVenvName))
+    os.chdir("{}/{}/src/".format(myProjectsDirectoryName, projectName))
     os.system("jupyter notebook &")
     
 
