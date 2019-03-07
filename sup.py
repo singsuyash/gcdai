@@ -10,7 +10,7 @@ def startJupyterNotebook(name, targetPath):
     os.system("cp Untitled.ipynb {}".format(jupyterNotebookName))
     os.system("mv {} {}".format(jupyterNotebookName, targetPath))
     os.chdir(targetPath)
-    os.system("jupyter notebook")
+    os.system("jupyter notebook &")
 
 def main():
 
