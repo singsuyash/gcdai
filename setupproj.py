@@ -31,7 +31,13 @@ def main():
     os.chdir("../")
     os.chdir("../")
     os.chdir("../")
+    
+    os.system("cp Untitled.ipynb {}.ipynb".format(projectName))
+    os.system("mv {}.ipynb {}/{}/{}/src/".format(projectName, myProjectsDirectoryName, projectName, projectVenvName))
+
     printLog("CWD {}".format(os.getcwd()))
+    os.chdir("{}/{}/{}/src/".format(myProjectsDirectoryName, projectName, projectVenvName))
+    os.system("jupyter notebook &")
     
 
 if __name__ == "__main__":
