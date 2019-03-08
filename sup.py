@@ -7,10 +7,11 @@ def printLog(msg):
 
 def startJupyterNotebook(name, targetPath):
     jupyterNotebookName = name + ".ipynb"
-    os.system("cp Untitled.ipynb {}".format(jupyterNotebookName))
-    os.system("mv {} {}".format(jupyterNotebookName, targetPath))
+    if jupyterNotebookName not in os.listdir(targetPath):
+        os.system("cp Untitled.ipynb {}".format(jupyterNotebookName))
+        os.system("mv {} {}".format(jupyterNotebookName, targetPath))
     os.chdir(targetPath)
-    os.system("jupyter notebook &")
+    os.system("jupyter notebook {} &".format(jupyterNotebookName))
 
 def main():
 
@@ -29,10 +30,6 @@ def main():
         if not os.path.isdir(notesDirectory):
             os.mkdir(notesDirectory)
         
-        if name+".ipynb" in os.listdir(notesDirectory):
-            printLog("note {} already exists".format(name))
-            return
-        
     elif target == "project":
         projectsRootDirectory = "myprojects"
         projectDirectory = os.path.join(projectsRootDirectory, name)
@@ -41,12 +38,9 @@ def main():
         if not os.path.isdir(projectsRootDirectory):
             os.mkdir(projectsRootDirectory)
 
-        if os.path.isdir(projectDirectory):
-            printLog("project {} already exists".format(name))
-            return
-        
-        os.mkdir(projectDirectory)
-        os.mkdir(jupyterTargetPath)
+        if not os.path.isdir(projectDirectory):
+            os.mkdir(projectDirectory)
+            os.mkdir(jupyterTargetPath)
     else:
         printLog("1. python sup.py note <name>")
         printLog("2. python sup.py project <name>")
